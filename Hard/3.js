@@ -1,11 +1,19 @@
-const findandRemove = (object) => {
-    let arr = Object.values(object);
-    for (const key of arr) {
-      console.log(key)
+function findandRemove(obj) {
+  let result = {};
+
+  for (let key in obj) {
+    if (typeof obj[key] === 'object') {
+      result[key] = findandRemove(obj[key]);
+    } else {
+      let parsedValue = parseFloat(obj[key]);
+      if (!isNaN(parsedValue)) {
+        result[key] = parsedValue;
+      }
     }
-    //   console.log(arr);
-    return true;
-  };
+  }
+
+  return result;
+}
   
   
   console.log(
