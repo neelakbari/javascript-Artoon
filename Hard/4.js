@@ -1,21 +1,21 @@
 function findNumberPairs(inputString) {
-  const numbers = inputString.split(' ').map(Number);
-  const count = numbers.shift();
-  const pairs = [];
-
-  const numberSet = new Set();
-  for (let i = 0; i < numbers.length; i++) {
-    if (numberSet.has(numbers[i])) {
-      pairs.push(`(${numbers[i]}, ${numbers[i]})`);
-      numberSet.delete(numbers[i]);
+  const numbers = inputString.split(" ").map(Number);
+  //to remove first element
+  numbers.shift();
+  const result = [];
+  const uniqueSet = new Set();
+  for (const number of numbers) {
+    if (uniqueSet.has(number)) {
+      result.push(`(${number}, ${number})`);
+      uniqueSet.delete(number);
     } else {
-      numberSet.add(numbers[i]);
+      uniqueSet.add(number);
     }
   }
-
-  return pairs.join(', ');
+  // console.log(result);
+  return result.join(", ");
 }
 
-let input = '4 2 3 4 1';
+let input = "4 2 3 4 1 4 5 5";
 let result = findNumberPairs(input);
-console.log(result);  // Output: (1, 1), (2, 2)
+console.log(result); // Output: (1, 1), (2, 2)

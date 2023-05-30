@@ -1,40 +1,26 @@
-function findFirstRecurringItem(str) {
-    if (!str || typeof str !== 'string' || str.length === 0) {
-      return {}; // Return empty object for invalid input
-    }
-  
-    const items = str.split(' ');
-    const itemMap = new Map();
-  
-    for (let i = 0; i < items.length; i++) {
-      const item = items[i];
-      if (itemMap.has(item)) {
-        const firstIndex = itemMap.get(item);
-        const nextIndex = i;
-        return {
-          item: item,
-          firstIndex: firstIndex,
-          nextIndex: nextIndex
-        };
-      }
-      itemMap.set(item, i);
-    }
-  
-    return {}; // Return empty object if no recurring item is found
+function recurIndex(str) {
+  if (typeof str !== "string" || str.length === 0) {
+    return {}; // Return empty object for blank or null input
   }
 
-  
-  let str = 'a b c d e a f g h i a';
-let result = findFirstRecurringItem(str);
-console.log(result);
-// Output: { item: 'a', firstIndex: 0, nextIndex: 9 }
+  const items = str.split("");
+  const itemMap = new Map();
 
-str = '1 2 3 4 5 6 7 8 9';
-result = findFirstRecurringItem(str);
-console.log(result);
-// Output: {}
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+    if (itemMap.has(item)) {
+      const firstIndex = itemMap.get(item);
+      const nextIndex = i;
+      return {
+        [item]: [firstIndex, nextIndex],
+      };
+    }
+    itemMap.set(item, i);
+  }
 
-str = '';
-result = findFirstRecurringItem(str);
-console.log(result);
-// Output: {}
+  return {}; // Return empty object if no recurring item is found
+}
+
+console.log(recurIndex("DXTDXTXDTXD"));
+console.log(recurIndex(""));
+console.log(recurIndex(null));
