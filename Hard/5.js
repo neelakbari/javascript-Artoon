@@ -1,16 +1,16 @@
 const makeBox = (num) => {
-    let n = num;
-    let string = "";
-    for (let i = 0; i < n; i++) {
-      for (let j = 0; j < n; j++) {
-        if (i === 0 || i == n - 1 || j == 0 || j == n - 1) {
-          string += "#";
-        } else {
-          string += " ";
-        }
-      }
-      string += "\n";
+  let pattern="";
+  for (let i = 1; i <= num * num; i++) {
+    if (i <= num || i > num * (num - 1) || i % num === 1 || i % num === 0) {
+      pattern += '*';
+    } else {
+      pattern += ' ';
     }
-    return string;
+
+    if (i % num === 0) {
+      pattern += '\n';
+    }
+  }
+    return pattern;
   };
   console.log(makeBox(7));
