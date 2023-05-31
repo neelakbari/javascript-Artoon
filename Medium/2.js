@@ -1,15 +1,18 @@
 const numInStr = (arr) => {
-  let result = arr.filter((ele)=>{
-    if (ele.includes(" ")) {
-      ele= ele.split(" ").join("")
+  let result = arr.filter((ele) => filtered(ele));
+
+  //helper function
+  function filtered(item) {
+    if (item.includes(" ")) {
+      item = item.split(" ").join("");
     }
-    for(let i = 0;i<ele.length; i++){
-      if(!isNaN( ele[i])){
-        return true
+    for (const element of item) {
+      if (!isNaN(element)) {
+        return true;
       }
     }
-    return false
-  });
+    return false;
+  }
   return result;
 };
 
