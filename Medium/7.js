@@ -1,30 +1,30 @@
 const calculateScore = (arr) => {
   let Abigail = 0;
   let Benson = 0;
-  arr.map((game) => {
-    let final = game.map((res) => {
-      return res.toUpperCase();
-    });
-    if (
-      (final[0] == "R" && final[1] == "P") ||
-      (final[0] == "S" && final[1] == "R") ||
-      (final[0] == "P" && final[1] == "S")
-    ) {
-      Benson += 1;
-    } else if (
-      (final[0] == "R" && final[1] == "S") ||
-      (final[0] == "S" && final[1] == "P") ||
-      (final[0] == "P" && final[1] == "R")
-    ) {
-      Abigail += 1;
+  arr.forEach((game) => {
+    let [player1, player2] = game.map((res) => res.toUpperCase());
+    
+    switch (player1 + player2) {
+      case "RP":
+      case "SR":
+      case "PS":
+        Benson += 1;
+        break;
+      case "RS":
+      case "SP":
+      case "PS":
+        Abigail += 1;
+        break;
+      default:
+        break;
     }
   });
   if (Abigail > Benson) {
     return "Abigail";
-  } else if (Abigail == Benson) {
-    return "tie";
-  } else {
+  } else if (Benson > Abigail) {
     return "Benson";
+  } else {
+    return "Tie";
   }
 };
 
